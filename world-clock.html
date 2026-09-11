@@ -3,48 +3,198 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Relógio digital mostrando a hora atual em múltiplos fusos horários mundiais">
-    <title>Relógio Mundial | Múltiplos Fusos Horários</title>
+    <meta name="description" content="Relógio digital mostrando a hora atual em múltiplos fusos horários mundiais com design premium">
+    <title>Relógio Mundial Premium | Múltiplos Fusos Horários</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles/world-clock.css">
 </head>
 <body>
+    <!-- Background Animated -->
+    <div class="animated-bg"></div>
+
     <div class="clock-container">
-        <!-- Header -->
-        <header class="header">
-            <h1>⏰ Relógio Mundial</h1>
-            <p class="subtitle">Visualização em tempo real de múltiplos fusos horários</p>
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="navbar-content">
+                <div class="logo">
+                    <i class="fas fa-globe"></i>
+                    <span>Relógio Mundial</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#" class="nav-link active">
+                        <i class="fas fa-clock"></i> Relógio
+                    </a>
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-info-circle"></i> Sobre
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Header Hero -->
+        <header class="header-hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        <span class="title-icon">⏰</span>
+                        Relógio Mundial
+                    </h1>
+                    <p class="hero-subtitle">Descubra a hora em qualquer lugar do mundo em tempo real</p>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number">23+</span>
+                            <span class="stat-label">Cidades</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">24</span>
+                            <span class="stat-label">Fusos Horários</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Preciso</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="globe-animation">
+                        <div class="globe-inner"></div>
+                    </div>
+                </div>
+            </div>
         </header>
 
-        <!-- Controlos -->
-        <div class="controls">
-            <div class="format-toggle">
-                <button class="btn btn-toggle active" data-format="12">12 Horas</button>
-                <button class="btn btn-toggle" data-format="24">24 Horas</button>
-            </div>
-            <button class="btn btn-reset">Repor</button>
-        </div>
+        <!-- Controls Section -->
+        <section class="controls-section">
+            <div class="controls-wrapper">
+                <div class="controls-left">
+                    <div class="format-toggle">
+                        <button class="btn btn-toggle active" data-format="12">
+                            <i class="fas fa-clock"></i> 12 Horas
+                        </button>
+                        <button class="btn btn-toggle" data-format="24">
+                            <i class="fas fa-hourglass-end"></i> 24 Horas
+                        </button>
+                    </div>
+                </div>
 
-        <!-- Pesquisa e Filtro -->
-        <div class="search-section">
-            <input 
-                type="text" 
-                id="searchInput" 
-                class="search-box" 
-                placeholder="🔍 Pesquise uma cidade ou fuso horário..."
-                aria-label="Pesquisar relógios"
-            >
-        </div>
+                <div class="controls-middle">
+                    <div class="search-container">
+                        <i class="fas fa-search search-icon"></i>
+                        <input 
+                            type="text" 
+                            id="searchInput" 
+                            class="search-box" 
+                            placeholder="Pesquise uma cidade, país ou fuso horário..."
+                            aria-label="Pesquisar relógios"
+                        >
+                        <button class="search-clear" id="clearSearch" style="display: none;">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="controls-right">
+                    <button class="btn btn-reset">
+                        <i class="fas fa-redo"></i> Repor
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filter Tags -->
+        <section class="filter-tags">
+            <button class="tag-btn active" data-filter="all">
+                <i class="fas fa-globe"></i> Todas
+            </button>
+            <button class="tag-btn" data-filter="europe">
+                <i class="fas fa-map"></i> Europa
+            </button>
+            <button class="tag-btn" data-filter="asia">
+                <i class="fas fa-map"></i> Ásia
+            </button>
+            <button class="tag-btn" data-filter="americas">
+                <i class="fas fa-map"></i> Américas
+            </button>
+            <button class="tag-btn" data-filter="africa">
+                <i class="fas fa-map"></i> África
+            </button>
+            <button class="tag-btn" data-filter="oceania">
+                <i class="fas fa-map"></i> Oceânia
+            </button>
+        </section>
 
         <!-- Grid de Relógios -->
-        <div class="clocks-grid" id="clocksGrid">
-            <!-- Os cartões de relógio serão gerados por JavaScript -->
+        <section class="clocks-section">
+            <div class="clocks-grid" id="clocksGrid">
+                <!-- Os cartões de relógio serão gerados por JavaScript -->
+            </div>
+        </section>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="emptyState" style="display: none;">
+            <div class="empty-icon">
+                <i class="fas fa-search"></i>
+            </div>
+            <h2>Nenhuma correspondência encontrada</h2>
+            <p>Tente pesquisar por outra cidade, país ou fuso horário.</p>
+            <button class="btn btn-primary" onclick="document.getElementById('searchInput').value = ''; document.getElementById('searchInput').dispatchEvent(new Event('input'));">
+                <i class="fas fa-redo"></i> Limpar Pesquisa
+            </button>
         </div>
 
-        <!-- Secção de Informações -->
-        <div class="info-section">
-            <h3>ℹ️ Sobre este Relógio</h3>
-            <p>Este relógio mundial mostra a hora atual em grandes cidades de todos os fusos horários. Os tempos atualizam a cada segundo e ajustam-se automaticamente para horário de verão/inverno. Clique em qualquer cartão para ver mais detalhes.</p>
-        </div>
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="stat-card">
+                <i class="fas fa-sync-alt"></i>
+                <h3>Atualização em Tempo Real</h3>
+                <p>Os relógios atualizam a cada segundo com precisão absoluta</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-sun"></i>
+                <h3>Horário de Verão/Inverno</h3>
+                <p>Ajusta-se automaticamente para DST em todas as regiões</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-search"></i>
+                <h3>Pesquisa Avançada</h3>
+                <p>Filtre por cidade, país ou código de fuso horário instantaneamente</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-mobile-alt"></i>
+                <h3>Totalmente Responsivo</h3>
+                <p>Funciona perfeitamente em desktop, tablet e telemóvel</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Sobre</h4>
+                    <p>Relógio Mundial Premium oferece uma visualização elegante e precisa dos fusos horários mundiais em tempo real.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Características</h4>
+                    <ul>
+                        <li><a href="#">23+ Cidades</a></li>
+                        <li><a href="#">Formato 12/24h</a></li>
+                        <li><a href="#">Pesquisa Avançada</a></li>
+                        <li><a href="#">Design Premium</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><a href="#"><i class="fab fa-github"></i> GitHub</a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Relógio Mundial Premium. Todos os direitos reservados.</p>
+            </div>
+        </footer>
     </div>
 
     <script src="js/world-clock.js"></script>
